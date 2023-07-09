@@ -3,7 +3,7 @@ function doEffect (variant: number) {
         effect1()
     } else if (variant == 1) {
         effect2()
-    } else {
+    } else if (variant == 2) {
         effect3()
     }
 }
@@ -81,70 +81,62 @@ input.onButtonPressed(Button.B, function () {
     }
 })
 function effect3 () {
-    basic.showLeds(`
+    images.createImage(`
         . . . . #
         . . . . .
         . . . . .
         . . . . .
         # . . . .
-        `)
-    basic.pause(effectSpeed)
-    basic.showLeds(`
+        `).showImage(0, effectSpeed)
+    images.createImage(`
         . . . # #
         . . . . #
         . . . . .
         # . . . .
         # # . . .
-        `)
-    basic.pause(effectSpeed)
-    basic.showLeds(`
+        `).showImage(0, effectSpeed)
+    images.createImage(`
         . . # # #
         . . . # #
         # . . . #
         # # . . .
         # # # . .
-        `)
-    basic.pause(effectSpeed)
-    basic.showLeds(`
+        `).showImage(0, effectSpeed)
+    images.createImage(`
         . # # # #
         # . # # #
         # # . # #
         # # # . #
         # # # # .
-        `)
-    basic.pause(effectSpeed)
-    basic.showLeds(`
+        `).showImage(0, effectSpeed)
+    images.createImage(`
         # # # # #
         # # # # #
         # # # # #
         # # # # #
         # # # # #
-        `)
-    basic.pause(effectSpeed)
-    basic.showLeds(`
+        `).showImage(0, effectSpeed)
+    images.createImage(`
         # # # # #
         # # # # #
         # # . # #
         # # # # #
         # # # # #
-        `)
-    basic.pause(effectSpeed)
-    basic.showLeds(`
+        `).showImage(0, effectSpeed)
+    images.createImage(`
         # # # # #
         # . . . #
         # . . . #
         # . . . #
         # # # # #
-        `)
-    basic.pause(effectSpeed)
-    basic.showLeds(`
+        `).showImage(0, effectSpeed)
+    images.createImage(`
         . . . . .
         . . . . .
         . . . . .
         . . . . .
         . . . . .
-        `)
-    basic.pause(effectSpeed)
+        `).showImage(0, effectSpeed)
 }
 /**
  * effectSpeed is in ms
