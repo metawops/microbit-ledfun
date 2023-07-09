@@ -1,8 +1,10 @@
 function doEffect (variant: number) {
     if (variant == 0) {
         effect1()
-    } else {
+    } else if (variant == 1) {
         effect2()
+    } else {
+        effect3()
     }
 }
 function effect1 () {
@@ -16,7 +18,7 @@ function effect1 () {
             } else {
                 led.toggle(4 - column, row)
             }
-            basic.pause(80)
+            basic.pause(effectSpeed)
         }
     }
     if (sound) {
@@ -29,12 +31,19 @@ function effect1 () {
             } else {
                 led.toggle(4 - column, 4 - row)
             }
-            basic.pause(35)
+            basic.pause(effectSpeed)
         }
     }
 }
 input.onButtonPressed(Button.A, function () {
     sound = !(sound)
+})
+input.onButtonPressed(Button.AB, function () {
+    if (effectSpeed > 10) {
+        effectSpeed = effectSpeed / 2
+    } else {
+        effectSpeed = effectSpeedMax
+    }
 })
 function effect2 () {
     if (sound) {
@@ -47,7 +56,7 @@ function effect2 () {
             } else {
                 led.toggle(column, 4 - row)
             }
-            basic.pause(50)
+            basic.pause(effectSpeed)
         }
     }
     if (sound) {
@@ -60,7 +69,7 @@ function effect2 () {
             } else {
                 led.toggle(4 - column, 4 - row)
             }
-            basic.pause(50)
+            basic.pause(effectSpeed)
         }
     }
 }
@@ -71,13 +80,86 @@ input.onButtonPressed(Button.B, function () {
         effect = 0
     }
 })
+function effect3 () {
+    basic.showLeds(`
+        . . . . #
+        . . . . .
+        . . . . .
+        . . . . .
+        # . . . .
+        `)
+    basic.pause(effectSpeed)
+    basic.showLeds(`
+        . . . # #
+        . . . . #
+        . . . . .
+        # . . . .
+        # # . . .
+        `)
+    basic.pause(effectSpeed)
+    basic.showLeds(`
+        . . # # #
+        . . . # #
+        # . . . #
+        # # . . .
+        # # # . .
+        `)
+    basic.pause(effectSpeed)
+    basic.showLeds(`
+        . # # # #
+        # . # # #
+        # # . # #
+        # # # . #
+        # # # # .
+        `)
+    basic.pause(effectSpeed)
+    basic.showLeds(`
+        # # # # #
+        # # # # #
+        # # # # #
+        # # # # #
+        # # # # #
+        `)
+    basic.pause(effectSpeed)
+    basic.showLeds(`
+        # # # # #
+        # # # # #
+        # # . # #
+        # # # # #
+        # # # # #
+        `)
+    basic.pause(effectSpeed)
+    basic.showLeds(`
+        # # # # #
+        # . . . #
+        # . . . #
+        # . . . #
+        # # # # #
+        `)
+    basic.pause(effectSpeed)
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        `)
+    basic.pause(effectSpeed)
+}
+/**
+ * effectSpeed is in ms
+ */
+let effectSpeedMax = 0
+let effectSpeed = 0
 let numberOfEffects = 0
 let effect = 0
 let sound = false
 basic.clearScreen()
 sound = true
 effect = 0
-numberOfEffects = 2
+numberOfEffects = 3
+effectSpeed = 100
+effectSpeedMax = 800
 basic.forever(function () {
     doEffect(effect)
 })
